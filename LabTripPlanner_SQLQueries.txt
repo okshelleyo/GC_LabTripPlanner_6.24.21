@@ -1,0 +1,59 @@
+--CREATE DATABASE [TripPlanner];
+
+--GO
+
+--USE [TripPlanner];
+
+--CREATE TABLE [Passport] (
+--[LastFourDigits] NCHAR(4) NOT NULL PRIMARY KEY,
+--[Address] NVARCHAR(100) NOT NULL,
+--[PassportNum] NCHAR(9) NOT NULL,
+--[ExpiryDate] DATE NOT NULL,
+
+--)
+
+--CREATE TABLE [Person] (
+--[UserId] NVARCHAR(50) NOT NULL PRIMARY KEY,
+--[PassportId] NCHAR(4) FOREIGN KEY REFERENCES [Passport]([LastFourDigits]),
+--[CurrentAddress] NVARCHAR(100) NOT NULL,
+--[PhoneNumber] NCHAR(10) NOT NULL,
+--[Dob] DATE NOT NULL
+
+--)
+
+--CREATE TABLE [Trip] (
+--[TripId] INT PRIMARY KEY IDENTITY (1,1),
+--[Budget] INT,
+--[StartDate] DATE NOT NULL,
+--[EndDate] DATE,
+--[StartDesintation] NVARCHAR(100) NOT NULL,
+--[EndDestination] NVARCHAR(100)
+
+--)
+
+--CREATE TABLE [Hotel] (
+--[HotelId] NCHAR(4) NOT NULL PRIMARY KEY,
+--[RoomPrice] FLOAT NOT NULL,
+--[HotelAddress] NVARCHAR(100) NOT NULL,
+--[PhoneNumber] NCHAR(10) NOT NULL,
+
+--)
+
+--ALTER TABLE [Passport]
+--ADD [UserId] NVARCHAR(50) FOREIGN KEY REFERENCES Person(UserId);
+
+--CREATE TABLE [GroupTrip] (
+--[GroupId] INT PRIMARY KEY IDENTITY (1,1),
+--[UserId] NVARCHAR(50) FOREIGN KEY REFERENCES [Person]([UserId]),
+--[TripId] INT FOREIGN KEY REFERENCES [Trip]([TripId]),
+
+--)
+
+--CREATE TABLE [Reservations] (
+--[ResNum] NVARCHAR(50) NOT NULL PRIMARY KEY,
+--[HotelId] NCHAR(4) FOREIGN KEY REFERENCES [Hotel]([HotelId]),
+--[TripId] INT FOREIGN KEY REFERENCES [Trip]([TripId]),
+--[CheckIn] DATE NOT NULL,
+--[CheckOut] DATE NOT NULL
+
+--)
